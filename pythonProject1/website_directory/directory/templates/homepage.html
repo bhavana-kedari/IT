@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Website Directory</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .category-name {
+            font-weight: bold;
+            color: #3498db;
+            font-size: 18px;
+            padding: 15px 0;
+        }
+
+        .page-title {
+            font-weight: normal;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .views-likes {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .view-button {
+            background-color: #27ae60;
+            color: #fff;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-button:hover {
+            background-color: #219653;
+        }
+
+        .add-button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+        }
+
+        .add-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Website Directory</h1>
+
+    <!-- Add a link/button to add a new category -->
+    <a href="{% url 'add_category' %}" class="add-button">Add New Category</a>
+
+    <!-- Add a link/button to add a new page -->
+    <a href="{% url 'add_page' category_id=0 %}" class="add-button">Add New Page</a>
+
+    {% for category in categories %}
+    <table>
+        <caption class="category-name">{{ category.name }}</caption>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>URL</th>
+                <th>Views</th>
+                <th>Likes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for page in category.page_set.all %}
+            <tr>
+                <td class="page-title">{{ page.title }}</td>
+                <td>{{ page.url }}</td>
+                <td class="views-likes">{{ page.views }}</td>
+                <td class="views-likes">{{ page.likes }}</td>
+                <td><a class="view-button" href="{{ page.url }}" target="_blank">View</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endfor %}
+</body>
+</html>

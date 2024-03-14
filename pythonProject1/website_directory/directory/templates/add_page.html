@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Page</title>
+</head>
+<body>
+    <h1>Add Page</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="id_category">Category:</label>
+        {{ form.categoryy }}
+        <br>
+        <label for="id_title">Title:</label>
+        {{ form.title }}
+        <br>
+        <label for="id_url">URL:</label>
+        <input type="text" id="id_url" name="url">
+        <br>
+        <button type="submit">Add Page</button>
+    </form>
+</body>
+</html>

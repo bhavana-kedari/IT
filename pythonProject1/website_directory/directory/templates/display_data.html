@@ -1,0 +1,23 @@
+<!-- display_data.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Data</title>
+</head>
+<body>
+    <h2>Categories</h2>
+    <ul>
+        {% for category in categories %}
+            <li>{{ category.name }} - Visits: {{ category.visits }} - Likes: {{ category.likes }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Pages</h2>
+    <ul>
+        {% for page in pages %}
+            <li>{{ page.title }} - Category: {{ page.category.name }} - Views: {{ page.views }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
